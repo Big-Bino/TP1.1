@@ -1,15 +1,113 @@
 {
   "version": "1",
   "metadata": {
-    "marimo_version": "0.24.2",
+    "marimo_version": "0.25.0",
     "script_metadata_hash": "cdac4f193ea60f385129ed849f93ec6c"
   },
   "cells": [
     {
       "id": "setup",
-      "code_hash": null,
+      "code_hash": "1d0db38904205bec4d6f6f6a1f6cec3e",
       "outputs": [],
       "console": []
+    },
+    {
+      "id": "Hbol",
+      "code_hash": "8e8ed311bcadcdf3aaec191948171d14",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"tp11\">TP1.1</h1>\n<span class=\"paragraph\">Vou come\u00e7ar por criar uma fun\u00e7\u00e3o capaz de ler os ficheiros na pasta dados.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "MJUe",
+      "code_hash": "af55e7023913527f0d96c038eec2ef2d",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "bkHC",
+      "code_hash": "18445d3722af2650c14292d81c8dd353",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "bfHR",
+      "code_hash": "439de04ed1013356b2f4f78dc3f15ef2",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "iEAB",
+      "code_hash": "e44d78305dd81aedfab07a4c83484ebd",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "pRRq",
+      "code_hash": "d79a5215d6cdd00274eaa10b5656763d",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "GjWl",
+      "code_hash": "ca9c9957841bc2e602fec2d65cb5da9d",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "[Disciplina(nome='Matem\u00e1tica', prof='Prof. Ana', carga=4, duplo=False, sala=None), Disciplina(nome='Portugu\u00eas', prof='Prof. Bruno', carga=4, duplo=False, sala=None), Disciplina(nome='Ci\u00eancias', prof='Prof. Carla', carga=3, duplo=False, sala='Laborat\u00f3rio'), Disciplina(nome='Hist\u00f3ria', prof='Prof. Diana', carga=2, duplo=False, sala=None), Disciplina(nome='Ingl\u00eas', prof='Prof. Diana', carga=2, duplo=False, sala=None), Disciplina(nome='Educa\u00e7\u00e3o F\u00edsica', prof='Prof. Eduardo', carga=2, duplo=True, sala='Gin\u00e1sio')]\n",
+          "mimetype": "text/plain"
+        }
+      ]
     }
   ]
 }
