@@ -62,7 +62,7 @@ def _(Bool):
 
 
 
-    return Disciplina, Disponibilidade, Sala, Turma
+    return Disciplina, Disponibilidade, Sala, Turma, dataclass
 
 
 @app.cell
@@ -79,7 +79,7 @@ def _(Sala, pd):
             salas.append(sala)
         return salas
 
-    return
+    return (carregar_salas,)
 
 
 @app.cell
@@ -100,12 +100,12 @@ def _(Disponibilidade, pd):
 
     def carregar_disponibilidade_excessoes() -> list[Disponibilidade]:
         b=pd.read_csv("dados/disponibilidade_excecoes.csv")
-    
+
         x = Disponibilidade(
             prof=b.loc[0,"professor"],
             horas=[[True,True,True,True,True],[True,True,True,True,True],[True,True,True,True,True],[True,True,True,True,True],[True,True,True,True,True]]
         )
-    
+
         valor = []
         for _, row in b.iterrows():
             if row["professor"]==x.prof:
@@ -120,21 +120,22 @@ def _(Disponibilidade, pd):
         valor.append(x)
         return valor
 
-    return
+    return (carregar_disponibilidade_excessoes,)
 
 
 @app.cell
-def _(Turma, b, pd):
+def _(Turma, pd):
     def carregar_turmas() -> list[Turma]:
         d=pd.read_csv("dados/turmas.csv")
         valor = []
-        for _, row in b.iterrows():
-            x=Turma(nome = row["turmas"])
+        for _, row in d.iterrows():
+            x=Turma(nome = row["turma"])
+    
             valor.append(x)
         return valor
-    
 
-    return
+
+    return (carregar_turmas,)
 
 
 @app.cell
@@ -154,7 +155,128 @@ def _(Disciplina, pd):
         return valor
     cena_da_disciplina = carregar_disciplinas()
     print(cena_da_disciplina)
+    return (carregar_disciplinas,)
 
+
+@app.cell
+def _(carregar_turmas):
+    def _():
+        teste=carregar_turmas()
+        return print(teste)
+
+
+    _()
+    return
+
+
+@app.cell
+def _(carregar_disciplinas):
+    def _():
+        teste=carregar_disciplinas()
+        return print(teste)
+
+
+    _()
+    return
+
+
+@app.cell
+def _(carregar_disponibilidade_excessoes):
+    def _():
+        teste=carregar_disponibilidade_excessoes()
+        return print(teste)
+
+
+    _()
+    return
+
+
+@app.cell
+def _(carregar_salas):
+    def _():
+        teste=carregar_salas()
+        return print(teste)
+
+
+    _()
+    return
+
+
+@app.cell
+def _(
+    carregar_disciplinas,
+    carregar_disponibilidade_excessoes,
+    carregar_salas,
+    carregar_turmas,
+):
+    todas_as_disciplinas = carregar_disciplinas()
+    todas_as_excessoes = carregar_disponibilidade_excessoes()
+    todas_as_salas = carregar_salas()
+    todas_as_turmas = carregar_turmas()
+    return (todas_as_disciplinas,)
+
+
+@app.cell
+def _(Turma, dataclass):
+    @dataclass
+    class Aula:
+        disciplina: str
+        prof: str
+        sala: None | str
+
+
+    @dataclass
+    class Horário:
+        aulas: list[list[Aula]]
+        turma: Turma
+
+    return
+
+
+@app.cell
+def _():
+    #from ortools.sat.python import cp_model
+    #model = cp_model.CpModel()
+    return
+
+
+@app.cell
+def _(Disciplina, todas_as_disciplinas):
+    def ve_se_tem_outra_disciplina_com_o_mesmo_professor(a,disciplinas) -> bool:
+        for b in disciplinas:
+            if a.prof == b.prof and a.nome != b.nome:
+                return True
+        return False
+
+    #dá uma lista de int que dão as prioridades na marcação de aulas
+    def define_prioridade(disciplinas)-> list[int]:
+        valor = []
+
+        #a é do tipo da disciplina
+        for a in disciplinas:
+            prioridade = 0
+            prioridade += a.carga
+            if a.duplo:
+                prioridade += 10
+            if a.sala != None:
+                prioridade += 10
+            if ve_se_tem_outra_disciplina_com_o_mesmo_professor(a,disciplinas):
+                prioridade+=12
+            valor.append(prioridade)
+        return valor
+
+    def ordena(disciplinas,a) -> list[Disciplina]:
+        return [d for _, d in sorted(zip(a, disciplinas), key=lambda x: x[0], reverse=True)]
+        
+        
+    
+    a = define_prioridade(todas_as_disciplinas)
+    print (a)
+    bruh = ordena(todas_as_disciplinas,a)
+    print(bruh)
+    a=define_prioridade(bruh)
+    print(a)
+        
     return
 
 
